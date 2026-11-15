@@ -1,6 +1,6 @@
 # Erdős Problem #112: a machine-checked proof that 30 ≤ k(6,3) ≤ 32
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24237181.svg)](https://doi.org/10.5281/zenodo.24237181)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24237180.svg)](https://doi.org/10.5281/zenodo.24237180)
 
 **The first machine-checked result on Erdős Problem #112.** This repository contains a complete Lean 4 proof of new bounds on the Erdős-Rado number k(6,3), checked entirely by Lean's kernel: no `sorry`, no `native_decide`, and no axioms beyond Lean's three standard ones.
 
@@ -11,7 +11,7 @@ theorem Erdos112.k63_bounds : 30 ≤ k3 6 ∧ k3 6 ≤ 32
 Before this work the best bounds that followed from published results were 26 ≤ k(6,3) ≤ 33 (the best lower bound printed explicitly was 18), and every known value of k(n,3) (n = 3, 4, 5) fit the formula n² − n + 3, which predicts 33. The proof shows that the formula breaks at n = 6, and narrows the answer to three possible values.
 
 - **Author:** Tyler Satchel Orden, independent researcher, ORCID [0009-0004-9205-7422](https://orcid.org/0009-0004-9205-7422)
-- **Date of this proof:** 14 November 2026. v1.0 (17:22 PST) proved the bounds with two compiled search runs; v1.1 (the same evening) removed them, so the whole proof is checked by Lean's kernel. Archived at Zenodo, https://doi.org/10.5281/zenodo.24237181
+- **Date of this proof:** 14 November 2026. v1.0 (17:22 PST) proved the bounds with two compiled search runs; v1.1 (the same evening) removed them, so the whole proof is checked by Lean's kernel. Archived at Zenodo: all versions https://doi.org/10.5281/zenodo.24237180 (v1.0 10.5281/zenodo.24237181; v1.1 10.5281/zenodo.24241452)
 - **Paper:** T. S. Orden, *New bounds on the Erdős-Rado number k(6,3)*, submitted to The Electronic Journal of Combinatorics (November 2026). Data and code: https://doi.org/10.5281/zenodo.24064871
 - **Problem page:** [Erdős Problem #112](https://www.erdosproblems.com/112); community database entry in [teorth/erdosproblems](https://github.com/teorth/erdosproblems)
 
@@ -59,7 +59,7 @@ lake env lean Axioms.lean
 
 ## How to cite
 
-> Tyler Satchel Orden, *Erdős Problem #112: a machine-checked proof that 30 ≤ k(6,3) ≤ 32* (Lean 4), version 1.0, Zenodo, 2026. https://doi.org/10.5281/zenodo.24237181
+> Tyler Satchel Orden, *Erdős Problem #112: a machine-checked proof that 30 ≤ k(6,3) ≤ 32* (Lean 4), version 1.1, Zenodo, 2026. https://doi.org/10.5281/zenodo.24241452
 
 and the paper (Zenodo record above). A `CITATION.cff` file is included; GitHub shows a "Cite this repository" button.
 
