@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this proof, please cite it as below."
+title: "Erdős Problem #112: a machine-checked proof that 30 ≤ k(6,3) ≤ 32"
+type: software
+authors:
+  - family-names: Orden
+    given-names: Tyler Satchel
+    affiliation: Independent researcher
+    orcid: "https://orcid.org/0009-0004-9205-7422"
+version: "1.0"
+date-released: "2026-11-14"
+license: MIT
+repository-code: "https://github.com/Tyorden/erdos-112-lean"
+keywords:
+  - Erdős problems
+  - Ramsey theory
+  - directed graphs
+  - Lean 4
+  - formal verification
+references:
+  - type: dataset
+    title: "New bounds on the Erdős-Rado number k(6,3): 30 <= k(6,3) <= 32"
+    authors:
+      - family-names: Orden
+        given-names: Tyler Satchel
+    doi: "10.5281/zenodo.24064871"
+    year: 2026

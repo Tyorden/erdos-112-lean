@@ -1,0 +1,22 @@
+name = "erdos112"
+version = "0.1.0"
+defaultTargets = ["Erdos112"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "v4.35.0"
+
+# The search code of Lemma 8 (no imports). Precompiled, so that `native_decide`
+# in Erdos112/SearchSound.lean runs it as native code and not in the interpreter.
+[[lean_lib]]
+name = "Erdos112Search"
+precompileModules = true
+
+[[lean_lib]]
+name = "Erdos112"
+
+# Stand-alone native runner of the two searches of Lemma 8.
+[[lean_exe]]
+name = "lemmab"
+root = "LemmaBMain"
