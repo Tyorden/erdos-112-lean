@@ -2,40 +2,40 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24237180.svg)](https://doi.org/10.5281/zenodo.24237180)
 
-**The first machine-checked result on Erdős Problem #112.** This repository contains a complete Lean 4 proof of new bounds on the Erdős-Rado number k(6,3), checked entirely by Lean's kernel: no `sorry`, no `native_decide`, and no axioms beyond Lean's three standard ones.
+**The first machine-checked result on Erdős Problem #112.** This repository contains a complete Lean 4 proof of new bounds on the Erdős-Rado number k(6,3), which is defined below. Lean's kernel, the small trusted program that checks every proof step, checks the whole proof. The proof uses no `sorry` (Lean's placeholder for a missing proof), no `native_decide` (a shortcut that trusts compiled code), and no axioms beyond Lean's three standard ones.
 
 ```lean
 theorem Erdos112.k63_bounds : 30 ≤ k3 6 ∧ k3 6 ≤ 32
 ```
 
-Before this work the best bounds that followed from published results were 26 ≤ k(6,3) ≤ 33 (the best lower bound printed explicitly was 18), and every known value of k(n,3) (n = 3, 4, 5) fit the formula n² − n + 3, which predicts 33. The proof shows that the formula breaks at n = 6, and narrows the answer to three possible values.
+Before this work, the best bounds that followed from published results were 26 ≤ k(6,3) ≤ 33. The best lower bound printed explicitly was 18. Every known value of k(n,3) (n = 3, 4, 5) fit the formula n² − n + 3, which predicts 33 for n = 6. The proof shows that the formula fails at n = 6. It narrows k(6,3) to three possible values: 30, 31 and 32.
 
 - **Author:** Tyler Satchel Orden, independent researcher, ORCID [0009-0004-9205-7422](https://orcid.org/0009-0004-9205-7422)
-- **Date of this proof:** 14 November 2026. v1.0 (17:22 PST) proved the bounds with two compiled search runs; v1.1 (the same evening) removed them, so the whole proof is checked by Lean's kernel. Archived at Zenodo: all versions https://doi.org/10.5281/zenodo.24237180 (v1.0 10.5281/zenodo.24237181; v1.1 10.5281/zenodo.24241452)
+- **Date of this proof:** 14 November 2026. Version 1.0 (17:22 PST) proved the bounds with two compiled search runs. Version 1.1 (the same evening) removed them, so Lean's kernel now checks the whole proof. Both versions are archived at Zenodo: all versions https://doi.org/10.5281/zenodo.24237180 (v1.0 10.5281/zenodo.24237181; v1.1 10.5281/zenodo.24241452)
 - **Paper:** T. S. Orden, *New bounds on the Erdős-Rado number k(6,3)*, submitted to The Electronic Journal of Combinatorics (November 2026). Data and code: https://doi.org/10.5281/zenodo.24064871
 - **Problem page:** [Erdős Problem #112](https://www.erdosproblems.com/112); community database entry in [teorth/erdosproblems](https://github.com/teorth/erdosproblems)
 
 ## The problem
 
-Erdős and Rado asked for k(n,m): the least k such that every directed graph on k vertices contains either n vertices with no arc between any two of them, or a transitive tournament on m vertices. For m = 3 the exact values were known only up to n = 5: k(3,3) = 9, k(4,3) = 15, k(5,3) = 23 (Bermond; Ihringer, Rajendraprasad and Weinert, 2021).
+Erdős and Rado asked for the number k(n,m). It is the least k such that every directed graph on k vertices contains one of two things: n vertices with no arc between any two of them, or a transitive tournament on m vertices. A transitive tournament is a set of vertices that can be put in an order so that each vertex has an arc to every later one. Vertices with no arc between any two of them are called independent, and a transitive tournament on 3 vertices is called a transitive triangle. For m = 3 the exact values were known only up to n = 5: k(3,3) = 9, k(4,3) = 15, k(5,3) = 23 (Bermond; Ihringer, Rajendraprasad and Weinert, 2021).
 
 ## What is proved
 
 | | Statement | How it is checked |
 |---|---|---|
-| Lower bound | an oriented graph on 29 vertices with no transitive triangle and no 6 independent vertices, so k(6,3) ≥ 30 | entirely by Lean's kernel (`decide +kernel`), only Lean's three standard axioms |
+| Lower bound | an oriented graph (a directed graph with at most one arc between any two vertices) on 29 vertices with no transitive triangle and no 6 independent vertices, so k(6,3) ≥ 30 | entirely by Lean's kernel (`decide +kernel`), only Lean's three standard axioms |
 | Upper bound | every oriented graph on 32 or more vertices has a transitive triangle or 6 independent vertices, so k(6,3) ≤ 32 | entirely by Lean's kernel, including the exhaustive case analysis of Lemma 8 (49 kernel computations, none over about 10 seconds) |
 | Earlier values | k(3,3) ≤ 9, k(4,3) ≤ 15, k(5,3) ≤ 23 | re-proved in Lean, not cited |
 
-`#print axioms Erdos112.k63_bounds` lists only `propext`, `Classical.choice` and `Quot.sound`, the axioms every Mathlib proof uses. Nothing is trusted beyond the Lean kernel: no compiled code, no external solver, no citation of earlier results. The definition of k(n,3) in `Erdos112/Defs.lean` (47 lines) is word for word the paper's: the least k such that every oriented graph on k vertices has n independent vertices or a transitive triangle. The 29-vertex graph in `Erdos112/Lower.lean` is identical to the deposited file `docs/witness_n29_m6_anneal.txt` (SHA-256 `5c1cc09c6df4a0b6dba4c3171c2eb620c89993b33a097da428ebbd176cacb3fa`).
+`#print axioms Erdos112.k63_bounds` lists only `propext`, `Classical.choice` and `Quot.sound`, the axioms that every proof in Mathlib (Lean's mathematics library) uses. The proof trusts nothing beyond the Lean kernel: no compiled code, no external solver, no citation of earlier results. The definition of k(n,3) in `Erdos112/Defs.lean` (47 lines) is word for word the paper's: the least k such that every oriented graph on k vertices has n independent vertices or a transitive triangle. The 29-vertex graph in `Erdos112/Lower.lean` is identical to the deposited file `docs/witness_n29_m6_anneal.txt` (SHA-256 `5c1cc09c6df4a0b6dba4c3171c2eb620c89993b33a097da428ebbd176cacb3fa`).
 
 ## Priority
 
-As of 14 November 2026, the community database of Erdős problems lists #112 with no formalized solution (`formal_status: unformalized`, data/problems.yaml, updated 12 November 2026), and the public Lean statements of #112 (an open pull request to google-deepmind/formal-conjectures, September 2026, and others) state the problem without proving any bound. To the author's knowledge this is the first machine-checked result on the problem. The bounds narrow k(6,3) to {30, 31, 32}; they do not determine k(n,m), so #112 remains open.
+As of 14 November 2026, the community database of Erdős problems lists #112 with no formalized solution (`formal_status: unformalized`, data/problems.yaml, updated 12 November 2026). The public Lean statements of #112 state the problem without proving any bound. They include an open pull request to google-deepmind/formal-conjectures (September 2026) and others. To the author's knowledge this is the first machine-checked result on the problem. The bounds narrow k(6,3) to {30, 31, 32}; they do not determine k(n,m), so #112 remains open.
 
 ## Check it yourself (about 2 minutes)
 
-Needs [elan](https://github.com/leanprover/elan) and about 8 GB of disk for the compiled Mathlib.
+You need [elan](https://github.com/leanprover/elan) (the Lean version manager) and about 8 GB of disk space for the compiled Mathlib.
 
 ```
 lake exe cache get
@@ -61,7 +61,7 @@ lake env lean Axioms.lean
 
 > Tyler Satchel Orden, *Erdős Problem #112: a machine-checked proof that 30 ≤ k(6,3) ≤ 32* (Lean 4), version 1.1, Zenodo, 2026. https://doi.org/10.5281/zenodo.24241452
 
-and the paper (Zenodo record above). A `CITATION.cff` file is included; GitHub shows a "Cite this repository" button.
+Please also cite the paper (Zenodo record above). A `CITATION.cff` file is included; GitHub shows a "Cite this repository" button.
 
 ## Use of AI
 
