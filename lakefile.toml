@@ -1,6 +1,6 @@
 name = "erdos112"
 version = "0.1.0"
-defaultTargets = ["Erdos112"]
+defaultTargets = ["Erdos112", "Challenge", "Solution"]
 
 [[require]]
 name = "mathlib"
@@ -14,6 +14,14 @@ name = "Erdos112Search"
 
 [[lean_lib]]
 name = "Erdos112"
+
+# The registry pair named in comparator.json: the statement alone, with `sorry`, and the
+# module that connects it to the proof.
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
 
 # Stand-alone native runner of the two searches of Lemma 8.
 [[lean_exe]]

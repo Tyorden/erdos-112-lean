@@ -1,5 +1,9 @@
-import Erdos112.Lower
-import Erdos112.Upper
+module
+
+public import Erdos112.Lower
+public import Erdos112.Upper
+
+@[expose] public section
 
 /-!
 # Main theorem: `30 ≤ k(6,3) ≤ 32` (paper, Theorem 1)

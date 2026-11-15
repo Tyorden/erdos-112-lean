@@ -1,6 +1,10 @@
-import Erdos112.SearchSound
-import Erdos112.KCover
-import Erdos112.KCheck.All
+module
+
+public import Erdos112.SearchSound
+public import Erdos112.KCover
+public import Erdos112.KCheck.All
+
+@[expose] public section
 
 /-!
 # Soundness of the kernel search of Lemma 8

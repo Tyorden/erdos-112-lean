@@ -1,4 +1,9 @@
-import Erdos112Search
+module
+
+public import Erdos112Search
+
+@[expose] public section
+
 open Erdos112.Search
 
 /-- Runs the two searches of Lemma 8 as a native program and prints the results. -/

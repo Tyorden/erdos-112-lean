@@ -1,5 +1,9 @@
-import Erdos112.Basic
-import Erdos112Search
+module
+
+public import Erdos112.Basic
+public import Erdos112Search
+
+@[expose] public section
 
 /-!
 # Soundness of the pair-by-pair search of Lemma 8

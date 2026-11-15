@@ -1,4 +1,8 @@
-import Erdos112.KSound
+module
+
+public import Erdos112.KSound
+
+@[expose] public section
 
 /-!
 # Lemma 8 of the paper: `{I_4, L_3}`-free oriented graphs on 14 vertices are 6-regular

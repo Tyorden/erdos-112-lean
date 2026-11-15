@@ -1,4 +1,8 @@
-import Erdos112.LemmaB
+module
+
+public import Erdos112.LemmaB
+
+@[expose] public section
 
 /-!
 # The upper bound `k(6,3) ≤ 32` (paper, Section 4)

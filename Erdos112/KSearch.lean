@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # A small search for Lemma 8 that the Lean kernel can evaluate (code only, no proofs)
 

@@ -27,7 +27,7 @@ Erdős and Rado asked for k(n,m): the least k such that every directed graph on 
 | Upper bound | every oriented graph on 32 or more vertices has a transitive triangle or 6 independent vertices, so k(6,3) ≤ 32 | entirely by Lean's kernel, including the exhaustive case analysis of Lemma 8 (49 kernel computations, none over about 10 seconds) |
 | Earlier values | k(3,3) ≤ 9, k(4,3) ≤ 15, k(5,3) ≤ 23 | re-proved in Lean, not cited |
 
-`#print axioms Erdos112.k63_bounds` lists only `propext`, `Classical.choice` and `Quot.sound`, the axioms every Mathlib proof uses. Nothing is trusted beyond the Lean kernel: no compiled code, no external solver, no citation of earlier results. The definition of k(n,3) in `Erdos112/Defs.lean` (47 lines) is word for word the paper's: the least k such that every oriented graph on k vertices has n independent vertices or a transitive triangle. The 29-vertex graph in `Erdos112/Lower.lean` is identical to the deposited file `docs/witness_n29_m6_anneal.txt` (SHA-256 `5c1cc09c6df4a0b6dba4c3171c2eb620c89993b33a097da428ebbd176cacb3fa`).
+`#print axioms Erdos112.k63_bounds` lists only `propext`, `Classical.choice` and `Quot.sound`, the axioms every Mathlib proof uses. Nothing is trusted beyond the Lean kernel: no compiled code, no external solver, no citation of earlier results. The definition of k(n,3) in `Erdos112/Defs.lean` (51 lines) is word for word the paper's: the least k such that every oriented graph on k vertices has n independent vertices or a transitive triangle. The 29-vertex graph in `Erdos112/Lower.lean` is identical to the deposited file `docs/witness_n29_m6_anneal.txt` (SHA-256 `5c1cc09c6df4a0b6dba4c3171c2eb620c89993b33a097da428ebbd176cacb3fa`).
 
 ## Priority
 
@@ -53,9 +53,24 @@ lake env lean Axioms.lean
 - `Erdos112/KSearch.lean`, `Erdos112/KData.lean`, `Erdos112/KCover.lean`, `Erdos112/KCheck/`, `Erdos112/KSound.lean`: the kernel-checked case analysis of Lemma 8 and its soundness proof (`tools/` holds the untrusted generator of the data tables; the kernel rejects the proof if the data is wrong)
 - `Erdos112Search.lean`, `Erdos112/SearchSound.lean`, `LemmaBMain.lean`: the earlier native search of v1.0, kept as an optional cross-check, not used by the proof
 - `Erdos112/Main.lean`: the final theorems
+- `Challenge.lean`, `Solution.lean`, `comparator.json`, `formalization.yaml`: the statement on its own (definitions and the theorem, with `sorry` in place of the proof), the module that connects it to the proof, the list of what is compared, and the project record in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format. See "Statement and proof, compared" below
+- `tools/CompareStatements.lean`: a local check that `Challenge.lean` and `Solution.lean` state the same theorem
 - `docs/KERNEL_PROOF_NOTES.md`: how the kernel-only proof of Lemma 8 works (v1.1)
 - `docs/TECHNICAL_NOTES.md`: file-by-file map to the paper and where the Lean route differs from the paper (written for v1.0, which used `native_decide` for Lemma 8)
 - `docs/STATEMENT_AUDIT_2026-11-14.md`: a separate review that the Lean statement means what the paper says (made on v1.0; the definitions and theorem statements are unchanged in v1.1)
+
+## Statement and proof, compared
+
+`Challenge.lean` (91 lines, imports only Mathlib) holds the definitions and the theorem with `sorry` in place of the proof. It is the only file a reader has to trust to know what is proved. `Solution.lean` imports the proof. `comparator.json` names the one compared theorem, `Erdos112.k63_bounds`, and the three permitted axioms. On Linux, with `bwrap` installed, `lake comparator` checks that the two files state the same theorem and that the proof uses only those axioms. Without `bwrap`:
+
+```
+lake build
+lake env lean --run tools/CompareStatements.lean Erdos112.k63_bounds
+```
+
+prints `RESULT: PASS` when the statement and everything it refers to are identical in the two files and the proof uses only `propext`, `Quot.sound` and `Classical.choice`.
+
+Every Lean file uses Lean's module system (`module`, `public import`, `@[expose] public section`). These headers were added after release v1.1; no definition, statement or proof was changed. `docs/` holds dated notes written before that change.
 
 ## How to cite
 

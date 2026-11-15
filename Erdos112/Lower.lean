@@ -1,4 +1,8 @@
-import Erdos112.Defs
+module
+
+public import Erdos112.Defs
+
+@[expose] public section
 
 /-!
 # The lower bound: the oriented graph `G_29` (paper, Section 3 and Appendix A)

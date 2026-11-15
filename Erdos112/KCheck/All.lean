@@ -1,15 +1,19 @@
-import Erdos112.KCheck.A0
-import Erdos112.KCheck.A1
-import Erdos112.KCheck.A2
-import Erdos112.KCheck.A3
-import Erdos112.KCheck.A4
-import Erdos112.KCheck.A5
-import Erdos112.KCheck.B0
-import Erdos112.KCheck.B1
-import Erdos112.KCheck.B2
-import Erdos112.KCheck.B3
-import Erdos112.KCheck.B4
-import Erdos112.KCheck.B5
+module
+
+public import Erdos112.KCheck.A0
+public import Erdos112.KCheck.A1
+public import Erdos112.KCheck.A2
+public import Erdos112.KCheck.A3
+public import Erdos112.KCheck.A4
+public import Erdos112.KCheck.A5
+public import Erdos112.KCheck.B0
+public import Erdos112.KCheck.B1
+public import Erdos112.KCheck.B2
+public import Erdos112.KCheck.B3
+public import Erdos112.KCheck.B4
+public import Erdos112.KCheck.B5
+
+@[expose] public section
 
 /-! Step 2 of the search fails on every one of the 24 graphs on `J`, for both types.
 Collects the 48 kernel-checked theorems of `KCheck/A*.lean` and `KCheck/B*.lean`.

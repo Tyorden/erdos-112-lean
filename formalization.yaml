@@ -1,0 +1,203 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4 (https://github.com/mathlib-initiative/formalization.yaml)
+version: "v0.4"
+
+project:
+  name: "Bounds on the Erdős-Rado number k(6,3): 30 ≤ k(6,3) ≤ 32 (Erdős Problem #112)"
+  description: >-
+    A Lean 4 proof that 30 ≤ k(6,3) ≤ 32. Here k(n,3) is the Erdős-Rado number: the least k
+    such that every oriented graph on k vertices has n vertices with no arc between any two
+    of them, or a transitive triangle (vertices x, y, z with arcs x → y, y → z and x → z).
+    The lower bound is an explicit oriented graph on 29 vertices with no transitive triangle
+    and no 6 independent vertices. The upper bound shows that every oriented graph on 32
+    vertices has one or the other; it rests on a counting argument and on one finite case
+    analysis (every oriented graph on 14 vertices with no transitive triangle and no 4
+    independent vertices is 6-regular), which is carried out by 49 computations inside
+    Lean's kernel. The upper bounds k(3,3) ≤ 9, k(4,3) ≤ 15 and k(5,3) ≤ 23 are proved on the
+    way and are not cited. The whole proof is checked by the kernel, with no native_decide,
+    and uses only the axioms propext, Quot.sound and Classical.choice. Before this work the
+    bounds that followed from published results were 26 ≤ k(6,3) ≤ 33. The result gives
+    bounds only: k(6,3) is 30, 31 or 32, its value is not determined, and Erdős Problem #112,
+    which asks for k(n,m) in general, remains open. As of 14 November 2026 the community
+    database of Erdős problems lists #112 as unformalized, and the public Lean statements
+    of the problem known to the author prove no bound; to the author's knowledge this is
+    the first machine-checked result on the problem.
+  authors:
+    - "Tyler Satchel Orden"
+  responsible_maintainers:
+    - "Tyler Satchel Orden"
+  license: "MIT"
+  # Extra keys (allowed by the standard): identifiers for the author and the repository.
+  author_orcid: "https://orcid.org/0009-0004-9205-7422"
+  repository_url: "https://github.com/Tyorden/erdos-112-lean"
+  archive_doi: "10.5281/zenodo.24237181"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C55", "05C20"]
+
+sources:
+  - title: "New bounds on the Erdős-Rado number k(6,3)"
+    authors:
+      - "Tyler Satchel Orden"
+    id: "https://doi.org/10.5281/zenodo.24064871"
+    type: "paper"
+    location: "Theorem 1 (30 ≤ k(6,3) ≤ 32); Theorem 5 (lower bound), Lemma 8, Lemma 9 and Theorem 10 (upper bound)"
+    relationship: "formalizes"
+    note: >-
+      Manuscript by the author of this formalization, submitted to The Electronic Journal
+      of Combinatorics in November 2026 and not yet peer reviewed. The Zenodo record holds
+      the paper's data and code. The Lean theorem is the paper's Theorem 1 with the paper's
+      definition of k(n,3). The Lean proof follows the paper's argument and differs from it
+      in the places listed under fidelity.divergences.
+    author_endorsement: "participated"
+  - title: "Erdős Problem #112: a machine-checked proof that 30 ≤ k(6,3) ≤ 32 (Lean 4), archived release of this repository"
+    authors:
+      - "Tyler Satchel Orden"
+    id: "https://doi.org/10.5281/zenodo.24237181"
+    type: "other"
+    relationship: "other"
+    note: >-
+      The Zenodo record of this repository (releases v1.0 and v1.1, 14 November 2026). It is
+      the same proof development, listed so that the archived copy can be found. The
+      submitted commit differs from release v1.1 only as described under automation.notes
+      (Lean module headers and the Palomar files); the definitions, the theorem statements
+      and the proofs are the same.
+    author_endorsement: "participated"
+  - title: "Erdős Problem #112"
+    id: "https://www.erdosproblems.com/112"
+    type: "web discussion"
+    relationship: "background"
+    note: >-
+      The problem page. The problem asks for k(n,m), the least k such that every directed
+      graph on k vertices has n independent vertices or a transitive tournament on m
+      vertices. This project bounds the single value k(6,3) and does not solve the problem.
+      Earlier exact values, cited in the paper and not used by the Lean proof: k(3,3) = 9,
+      k(4,3) = 15, k(5,3) = 23 (Bermond; Ihringer, Rajendraprasad and Weinert, 2021).
+
+related_formalizations:
+  - id: "https://github.com/google-deepmind/formal-conjectures"
+    relationship: "independent"
+    note: >-
+      An open pull request to this repository (September 2026) states Erdős Problem #112
+      in Lean and proves no bound. This project does not use it.
+  - id: "https://github.com/teorth/erdosproblems"
+    relationship: "other"
+    note: >-
+      The community database of Erdős problems. Its entry for #112 read
+      "formal_status: unformalized" (data/problems.yaml, updated 12 November 2026) when
+      this proof was made. It is a database, not a formalization.
+
+status:
+  scope: >-
+    Formalized and proved: Theorem 1 of the paper, 30 ≤ k(6,3) ≤ 32, with every step,
+    including the 29-vertex graph of the lower bound and the case analysis of Lemma 8 of
+    the upper bound. Also proved, as steps of the upper bound: k(3,3) ≤ 9, k(4,3) ≤ 15,
+    k(5,3) ≤ 23. There is no known gap in the proof. Not done: the value of k(6,3) is not
+    determined (it is 30, 31 or 32); the matching lower bounds for k(3,3), k(4,3), k(5,3)
+    are not formalized; k(n,m) for other n and m is not treated; Erdős Problem #112 is not
+    solved. The paper's separate C and SAT computations are not part of this repository's
+    proof and are not relied on.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Quot.sound", "Classical.choice"]
+  main_results:
+    - declaration: "Erdos112.k63_bounds"
+      file: "Erdos112/Main.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound", "Classical.choice"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5 (releases v1.0 and v1.1)", "Claude Fable 5.2 (module headers and registry files)"]
+      framework: "Claude Code"
+      tool_setup: >-
+        AI-assisted, under the author's direction. Claude, a large language model made by
+        Anthropic, wrote the Lean code, ran the builds and checked the output of
+        `#print axioms`. Lean 4.35.0 and Mathlib v4.35.0 on a laptop. The data tables of
+        the case analysis (Erdos112/KData.lean and Erdos112/KCheck/) are written by the
+        script tools/gen_kdata.py; the script is not trusted, because the kernel checks
+        every table.
+      cost:
+        wall_time: "the Lean proof was written on 14 November 2026"
+        spend_usd: "subscription-based, not tracked"
+        hardware: "one laptop"
+      prompting_notes: >-
+        Prompt logs are not included. The task given to the model was to formalize
+        Theorem 1 of the paper with the paper's definitions and no sorry (release v1.0),
+        and then to remove the two native_decide runs (release v1.1).
+  spend_usd: "subscription-based, not tracked"
+  notes: >-
+    The mathematics (the 29-vertex graph, the counting argument and the plan of the case
+    analysis) is from the author's paper. The Lean code was written and checked by Claude
+    (Anthropic) under the author's direction; the author is responsible for the result. No
+    AI system is an author. Release v1.0 proved the bounds with two native_decide runs for
+    Lemma 8; release v1.1 removed them, so the kernel checks everything. For this
+    submission the Lean files were moved to Lean's module system (a `module` header,
+    `public import`, and `@[expose] public section` in each file) as the registry requires,
+    and Challenge.lean, Solution.lean, comparator.json, tools/CompareStatements.lean and
+    this file were added. No definition, statement or proof was changed. Fuller accounts:
+    README.md, docs/KERNEL_PROOF_NOTES.md, docs/TECHNICAL_NOTES.md.
+
+fidelity:
+  divergences: >-
+    The statement is the paper's Theorem 1 with the paper's definition of k(n,3); vertices
+    are Fin k. The proof differs from the paper's in these places, each in the direction
+    of assuming less. (1) Nothing is cited: the upper bounds k(3,3) ≤ 9, k(4,3) ≤ 15 and
+    k(5,3) ≤ 23 are proved, and the uniqueness of Bermond's graph B_8 is not used. (2) In
+    Lemma 8 the paper fixes the eight non-neighbours of a vertex of degree 5 to be B_8; the
+    Lean search fixes less and so contains the paper's search. (3) The two types (3,2) and
+    (2,3) are searched separately; the converse-graph argument is not used. (4) Induced
+    subgraphs are replaced by vertex sets, and arc counts are doubled. (5) k3 n is defined
+    with sInf, which is 0 on the empty set; the lower bound 30 ≤ k3 6 therefore also proves
+    that the set is not empty, from the bound k(6,3) ≤ 36 that needs no computation.
+    (6) The case analysis of Lemma 8 is a row-by-row search (Remark 12 of the paper)
+    evaluated by the kernel, not the paper's C program. Details: docs/TECHNICAL_NOTES.md
+    and docs/KERNEL_PROOF_NOTES.md.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Claude Opus 5.5 (Anthropic), one statement audit, in a session separate from the one that wrote the Lean code"
+  notes: >-
+    Not reviewed by a human other than the author. One AI audit of the statement was made
+    on 14 November 2026 (docs/STATEMENT_AUDIT_2026-11-14.md): it compared the definitions
+    and the final theorem with the paper and found that they state the paper's Theorem 1.
+    It was made on release v1.0; the definitions and the theorem statements have not
+    changed since. The paper is submitted to a journal and is not yet peer reviewed.
+
+alignment:
+  namespace: "Erdos112"
+  statements:
+    - source: "Theorem 1: 30 ≤ k(6,3) ≤ 32"
+      lean: "Erdos112.k63_bounds"
+      module: "Erdos112.Main"
+      status: "proved"
+      note: "The compared theorem. Stated in Challenge.lean, proved in Erdos112/Main.lean, reached through Solution.lean."
+    - source: "Sections 1 and 2: oriented graph, independent set, transitive triangle, {I_n, L_3}-free, k(n,3)"
+      lean: "Erdos112.OGraph, Erdos112.OGraph.IsIndep, Erdos112.OGraph.HasTT, Erdos112.OGraph.Free, Erdos112.k3"
+      module: "Erdos112.Defs"
+      status: "other"
+      note: "Definitions, repeated word for word in Challenge.lean."
+    - source: "Theorem 5: an {I_6, L_3}-free oriented graph on 29 vertices"
+      lean: "Erdos112.lower_bound"
+      module: "Erdos112.Main"
+      status: "proved"
+      note: "The graph is Erdos112.G29 in Erdos112/Lower.lean, identical to docs/witness_n29_m6_anneal.txt."
+    - source: "Lemma 8: {I_4, L_3}-free oriented graphs on 14 vertices are 6-regular"
+      lean: "Erdos112.lemmaB"
+      module: "Erdos112.LemmaB"
+      status: "proved"
+      note: "Uses the kernel-checked case analysis of Erdos112/KSound.lean (49 kernel computations)."
+    - source: "Theorem 10: no {I_6, L_3}-free oriented graph on 32 vertices"
+      lean: "Erdos112.upper_bound"
+      module: "Erdos112.Main"
+      status: "proved"
+      note: "Stated for every finite vertex type with at least 32 elements."
+
+acknowledgements: >-
+  Lean 4 and Mathlib. The problem is recorded at erdosproblems.com and in the community
+  database teorth/erdosproblems.

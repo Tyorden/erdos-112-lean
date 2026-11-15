@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # The exhaustive search behind Lemma 8 of the paper (code only, no proofs)
 

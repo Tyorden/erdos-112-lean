@@ -1,4 +1,8 @@
-import Erdos112.KSearch
+module
+
+public import Erdos112.KSearch
+
+@[expose] public section
 
 /-!
 # The 24 graphs on `J` found by step 1 of the search (data, generated)

@@ -1,4 +1,8 @@
-import Erdos112.Defs
+module
+
+public import Erdos112.Defs
+
+@[expose] public section
 
 /-!
 # Basic facts and the counting lemma (paper, Section 2)

@@ -1,1 +1,3 @@
-import Erdos112.Main
+module
+
+public import Erdos112.Main
