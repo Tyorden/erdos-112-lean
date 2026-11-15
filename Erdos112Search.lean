@@ -9,8 +9,10 @@ soon as the decided pairs contain a transitive triangle (R1) or four pairwise no
 vertices (R2). `search` returns `true` exactly when every branch was cut, that is, when the
 table has no completion.
 
-The soundness proof is in `SearchSound.lean`. This file imports nothing, so that it can be
-compiled to native code quickly.
+The soundness proof is in `SearchSound.lean`. In this folder (`lean_kernel`) the two runs
+`check32`, `check23` are not used in any proof; Lemma 8 is proved by the smaller search of
+`Erdos112/KSearch.lean`, which the Lean kernel evaluates. The fixed pairs `fixed32`, `fixed23`
+below are still the ones used.
 -/
 
 namespace Erdos112.Search

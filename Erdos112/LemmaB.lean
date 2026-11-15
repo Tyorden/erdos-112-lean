@@ -1,4 +1,4 @@
-import Erdos112.SearchSound
+import Erdos112.KSound
 
 /-!
 # Lemma 8 of the paper: `{I_4, L_3}`-free oriented graphs on 14 vertices are 6-regular
@@ -305,7 +305,8 @@ theorem lemmaB23 {V : Type} (D : OGraph V) (hTT : ¬ D.HasTT) (S : Finset V)
     · exact ⟨hYi y1 my1 y2 my2, hYi y2 my2 y1 my1⟩
 
 /-- **Lemma 8 of the paper.** Every vertex of an `{I_4, L_3}`-free oriented graph on 14
-vertices has degree 6. (Uses the two `native_decide` runs through `no_graph32`, `no_graph23`.) -/
+vertices has degree 6. (Uses the kernel-checked search through `no_graph32`, `no_graph23` of
+`KSound.lean`; no `native_decide`.) -/
 theorem lemmaB {V : Type} (D : OGraph V) (hTT : ¬ D.HasTT) {S : Finset V}
     (hS : D.NoIndep S 4) (hc : S.card = 14) (v : V) (hv : v ∈ S) : D.deg S v = 6 := by
   have h1 := D.card_split hv

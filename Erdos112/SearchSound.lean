@@ -2,16 +2,19 @@ import Erdos112.Basic
 import Erdos112Search
 
 /-!
-# Soundness of the search of Lemma 8, and its two runs
+# Soundness of the pair-by-pair search of Lemma 8
 
 `search_sound`: if an oriented graph `D` on `Fin 14` has no transitive triangle and no
 independent set of 4 vertices, and agrees with the table `a` on every decided pair, then
 `search ps a = false` for every list of pairs `ps`. So `search ps a = true` proves that no
 such graph agrees with `a`. The proof is checked by the Lean kernel.
 
-`check32_true` and `check23_true` are the two runs. They are proved with `native_decide`,
-which trusts the Lean compiler and the native code it produces (axiom `Lean.ofReduceBool`).
-These are the only two uses of `native_decide` in the project.
+In this folder (`lean_kernel`) the two runs of this search are no longer part of the proof:
+they took about 27 seconds of native code and needed `native_decide`. Lemma 8 is proved
+instead by the smaller search of `KSearch.lean`, which the kernel evaluates (`KSound.lean`).
+This file is kept for `Agree` (used by `KSound.lean` and `LemmaB.lean`) and as the
+kernel-checked soundness proof of the paper's search, which the stand-alone program `lemmab`
+still runs as a cross-check.
 -/
 
 namespace Erdos112.Search
@@ -174,31 +177,5 @@ theorem ext_init (D : OGraph (Fin 14)) (l : List (Fin 14 × Fin 14 × PS))
       exact ih _ (ext_set ha (hl e (List.mem_cons_self))) (fun e' he' => hl e' (List.mem_cons_of_mem _ he'))
   have h0 := ext_empty D
   exact gen l (Array.replicate 196 PS.undec) h0 h
-
-/-- The run for type (3,2). Proved by `native_decide`: about 15 seconds of native code. -/
-theorem check32_true : check32 () = true := by native_decide
-
-/-- The run for type (2,3). Proved by `native_decide`: about 15 seconds of native code. -/
-theorem check23_true : check23 () = true := by native_decide
-
-/-- No `{I_4, L_3}`-free oriented graph on `Fin 14` agrees with the fixed pairs of type (3,2). -/
-theorem no_graph32 (D : OGraph (Fin 14)) (hTT : ¬ D.HasTT)
-    (hI : ∀ T : Finset (Fin 14), D.IsIndep T → T.card ≠ 4)
-    (h : ∀ e ∈ fixed32, Agree D e.1 e.2.1 e.2.2) : False := by
-  have := search_sound D hTT hI pairs32 (init fixed32) (ext_init D fixed32 h)
-  have h2 := check32_true
-  unfold check32 at h2
-  rw [this] at h2
-  exact Bool.false_ne_true h2
-
-/-- No `{I_4, L_3}`-free oriented graph on `Fin 14` agrees with the fixed pairs of type (2,3). -/
-theorem no_graph23 (D : OGraph (Fin 14)) (hTT : ¬ D.HasTT)
-    (hI : ∀ T : Finset (Fin 14), D.IsIndep T → T.card ≠ 4)
-    (h : ∀ e ∈ fixed23, Agree D e.1 e.2.1 e.2.2) : False := by
-  have := search_sound D hTT hI pairs23 (init fixed23) (ext_init D fixed23 h)
-  have h2 := check23_true
-  unfold check23 at h2
-  rw [this] at h2
-  exact Bool.false_ne_true h2
 
 end Erdos112.Search

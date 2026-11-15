@@ -22,7 +22,7 @@ theorem not_free_of_bound {n N : ℕ} (h : Bound n N) {V : Type} [Fintype V]
   omega
 
 /-- **Theorem 10 of the paper**: there is no `{I_6, L_3}`-free oriented graph on 32 vertices
-(or more). Depends on the two `native_decide` runs of Lemma 8. -/
+(or more). Kernel-checked (no `native_decide`). -/
 theorem upper_bound {V : Type} [Fintype V] (hV : 32 ≤ Fintype.card V) (D : OGraph V) :
     ¬ D.Free 6 := not_free_of_bound bound_6_32 hV D
 
@@ -60,11 +60,12 @@ theorem k63_ge : 30 ≤ k3 6 := by
     obtain ⟨D, hD⟩ := exists_free_of_le (show k ≤ 29 by omega)
     exact hk D hD
 
-/-- `k(6,3) ≤ 32`. Depends on the two `native_decide` runs of Lemma 8. -/
+/-- `k(6,3) ≤ 32`. Kernel-checked (no `native_decide`). -/
 theorem k63_le : k3 6 ≤ 32 :=
   Nat.sInf_le (fun D => upper_bound (by simp) D)
 
-/-- **Theorem 1 of the paper**: `30 ≤ k(6,3) ≤ 32`. -/
+/-- **Theorem 1 of the paper**: `30 ≤ k(6,3) ≤ 32`. Kernel-checked: depends only on the axioms
+`propext`, `Classical.choice` and `Quot.sound`. -/
 theorem k63_bounds : 30 ≤ k3 6 ∧ k3 6 ≤ 32 := ⟨k63_ge, k63_le⟩
 
 end Erdos112
