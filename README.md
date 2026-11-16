@@ -2,13 +2,13 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24237180.svg)](https://doi.org/10.5281/zenodo.24237180)
 
-**The first machine-checked result on Erdős Problem #112.** This repository contains a complete Lean 4 proof of new bounds on the Erdős-Rado number k(6,3), which is defined below. Lean's kernel, the small trusted program that checks every proof step, checks the whole proof. The proof uses no `sorry` (Lean's placeholder for a missing proof), no `native_decide` (a shortcut that trusts compiled code), and no axioms beyond Lean's three standard ones.
+**The first Lean proof on Erdős Problem #112.** This repository contains a complete Lean 4 proof of new bounds on the Erdős-Rado number k(6,3), which is defined below. Lean's kernel, the small trusted program that checks every proof step, checks the whole proof. The proof uses no `sorry` (Lean's placeholder for a missing proof), no `native_decide` (a shortcut that trusts compiled code), and no axioms beyond Lean's three standard ones.
 
 ```lean
 theorem Erdos112.k63_bounds : 30 ≤ k3 6 ∧ k3 6 ≤ 32
 ```
 
-Before this work, the best bounds that followed from published results were 26 ≤ k(6,3) ≤ 33. The best lower bound printed explicitly was 18. Every known value of k(n,3) (n = 3, 4, 5) fit the formula n² − n + 3, which predicts 33 for n = 6. The proof shows that the formula fails at n = 6. It narrows k(6,3) to three possible values: 30, 31 and 32.
+Before this work, the best known bounds were 29 ≤ k(6,3) ≤ 33. The lower bound 29 is due to Daniel Kirtchakov ([Zenodo, 11 August 2026](https://doi.org/10.5281/zenodo.21890619)), from a 28-vertex circulant oriented graph, which our search found independently on 7 November 2026 (his record is earlier); the upper bound 33 is due to Ihringer, Rajendraprasad and Weinert (2021). Every known value of k(n,3) (n = 3, 4, 5) fit the formula n² − n + 3, which predicts 33 for n = 6. The proof shows that the formula fails at n = 6. It narrows k(6,3) to three possible values: 30, 31 and 32.
 
 - **Author:** Tyler Satchel Orden, independent researcher, ORCID [0009-0004-9205-7422](https://orcid.org/0009-0004-9205-7422)
 - **Date of this proof:** 14 November 2026. Version 1.0 (17:22 PST) proved the bounds with two compiled search runs. Version 1.1 (the same evening) removed them, so Lean's kernel now checks the whole proof. Both versions are archived at Zenodo: all versions https://doi.org/10.5281/zenodo.24237180 (v1.0 10.5281/zenodo.24237181; v1.1 10.5281/zenodo.24241452)
@@ -29,9 +29,11 @@ Erdős and Rado asked for the number k(n,m). It is the least k such that every d
 
 `#print axioms Erdos112.k63_bounds` lists only `propext`, `Classical.choice` and `Quot.sound`, the axioms that every proof in Mathlib (Lean's mathematics library) uses. The proof trusts nothing beyond the Lean kernel: no compiled code, no external solver, no citation of earlier results. The definition of k(n,3) in `Erdos112/Defs.lean` (47 lines) is word for word the paper's: the least k such that every oriented graph on k vertices has n independent vertices or a transitive triangle. The 29-vertex graph in `Erdos112/Lower.lean` is identical to the deposited file `docs/witness_n29_m6_anneal.txt` (SHA-256 `5c1cc09c6df4a0b6dba4c3171c2eb620c89993b33a097da428ebbd176cacb3fa`).
 
-## Priority
+## Earlier work and priority
 
-As of 14 November 2026, the community database of Erdős problems lists #112 with no formalized solution (`formal_status: unformalized`, data/problems.yaml, updated 12 November 2026). The public Lean statements of #112 state the problem without proving any bound. They include an open pull request to google-deepmind/formal-conjectures (September 2026) and others. To the author's knowledge this is the first machine-checked result on the problem. The bounds narrow k(6,3) to {30, 31, 32}; they do not determine k(n,m), so #112 remains open.
+Daniel Kirtchakov's Zenodo record of 11 August 2026 ([10.5281/zenodo.21890619](https://doi.org/10.5281/zenodo.21890619)) proves 29 ≤ k(6,3) with the circulant oriented graph Cay(Z_28, {3,8,10,12,17}), and determines k(3,4) = 21 with SAT proofs whose LRAT certificates are replayed by an independent checker. That is an earlier machine-checked result on Erdős Problem #112 than this one. The 28-vertex circulant Cay(Z_28, {1,4,12,15,22}) that this project's own search found is his graph relabelled by x → 5x (mod 28). The 29-vertex graph proved here is a different graph, and the upper bound 32 is new.
+
+As of 15 November 2026, the community database of Erdős problems lists #112 with no formalized solution (`formal_status: unformalized`, data/problems.yaml). The public Lean files on #112 state the problem without proving any bound: an open pull request to google-deepmind/formal-conjectures (September 2026) and others. To the author's knowledge this is the first Lean proof of any result on the problem. The bounds narrow k(6,3) to {30, 31, 32}; they do not determine k(n,m), so #112 remains open.
 
 ## Check it yourself (about 2 minutes)
 

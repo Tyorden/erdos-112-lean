@@ -7,8 +7,8 @@ authors:
     given-names: Tyler Satchel
     affiliation: Independent researcher
     orcid: "https://orcid.org/0009-0004-9205-7422"
-version: "1.1"
-date-released: "2026-11-14"
+version: "1.2"
+date-released: "2026-11-15"
 doi: "10.5281/zenodo.24241452"
 license: MIT
 repository-code: "https://github.com/Tyorden/erdos-112-lean"
@@ -25,4 +25,11 @@ references:
       - family-names: Orden
         given-names: Tyler Satchel
     doi: "10.5281/zenodo.24064871"
+    year: 2026
+  - type: dataset
+    title: "Certify v0.7.0: the oriented Ramsey number k(3,4) = r(I_3, L_4) = 21"
+    authors:
+      - family-names: Kirtchakov
+        given-names: Daniel
+    doi: "10.5281/zenodo.21890619"
     year: 2026
